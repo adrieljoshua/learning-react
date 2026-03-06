@@ -1,27 +1,3 @@
-# Learning React Workshop
-
-This repository contains the code used in the **React Workshop**.
-Students will use this project to learn the fundamentals of **React and modern web development**.
-
----
-
-## What You Will Learn
-
-During this workshop we will cover:
-
-* How the web works
-* Client vs Server
-* How browsers render webpages
-* Why React exists
-* Components
-* JSX
-* Props
-* State (`useState`)
-* Side Effects (`useEffect`)
-* React rendering
-
----
-
 # Setup Instructions
 
 Follow these steps to run the project on your computer.
