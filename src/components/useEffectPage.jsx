@@ -1,60 +1,28 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function UseEffectPage() {
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const [logs, setLogs] = useState([]);
-  const [search, setSearch] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
-  const [windowW, setWindowW] = useState(window.innerWidth);
-
-  const addLog = (msg) =>
-    setLogs((l) => [
-      { id: Date.now(), time: new Date().toLocaleTimeString(), msg },
-      ...l.slice(0, 9),
-    ]);
 
   // Timer effect
   useEffect(() => {
     if (!running) return;
-    addLog("⏱ Timer started — effect ran");
     const id = setInterval(() => setElapsed((e) => e + 1), 1000);
     return () => {
       clearInterval(id);
-      addLog("🧹 Timer stopped — cleanup ran");
+    
     };
   }, [running]);
-
-  // Debounce effect
-  useEffect(() => {
-    if (!search) {
-      setDebouncedSearch("");
-      return;
-    }
-    const id = setTimeout(() => {
-      setDebouncedSearch(search);
-      addLog(`🔍 Debounced: "${search}"`);
-    }, 500);
-    return () => clearTimeout(id);
-  }, [search]);
 
   // Window resize effect
   useEffect(() => {
     const handleResize = () => {
-      setWindowW(window.innerWidth);
-      addLog(`📐 Window resized → ${window.innerWidth}px`);
     };
     window.addEventListener("resize", handleResize);
-    addLog("👂 Resize listener attached");
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
-
-  // Mount/unmount log
-  useEffect(() => {
-    addLog("🚀 Component mounted — [] effect ran");
-    return () => addLog("💀 Component unmounted — cleanup ran");
   }, []);
 
   const fmt = (s) =>
@@ -71,7 +39,7 @@ export default function UseEffectPage() {
           <span className="tag blue">useEffect</span>
         </div>
         <div className="card-body">
-          <div className="split">
+          <div>
             {/* Timer */}
             <div>
               <p className="effect-log-label">
@@ -117,58 +85,6 @@ export default function UseEffectPage() {
                   <span className="fn">clearInterval</span>(
                   <span className="var">id</span>){"\n"}
                   {"}"}, [<span className="var">running</span>])
-                </pre>
-              </div>
-            </div>
-
-            {/* Debounce */}
-            <div>
-              <p className="effect-log-label">
-                🔍 Debounce — delay side effects
-              </p>
-              <input
-                type="text"
-                placeholder="Type to search (debounced)..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              {debouncedSearch && (
-                <div
-                  style={{
-                    marginTop: 10,
-                    padding: 12,
-                    background: "var(--panel)",
-                    borderRadius: 8,
-                    fontSize: 12,
-                    border: "1px solid var(--border)",
-                  }}
-                >
-                  Searching for:{" "}
-                  <span style={{ color: "var(--accent2)" }}>
-                    {debouncedSearch}
-                  </span>
-                </div>
-              )}
-              <div className="code-block" style={{ marginTop: 12 }}>
-                <pre>
-                  <span className="fn">useEffect</span>
-                  {"(() => {"}
-                  {"\n"}
-                  {"  "}
-                  <span className="kw">const</span>{" "}
-                  <span className="var">id</span> ={" "}
-                  <span className="fn">setTimeout</span>(() {"=>"} {"{"}
-                  {"\n"}
-                  {"    "}
-                  <span className="fn">setDebounced</span>(
-                  <span className="var">search</span>){"\n"}
-                  {"  "}
-                  {"},"} <span className="num">500</span>){"\n"}
-                  {"  "}
-                  <span className="kw">return</span> () {"=>"}{" "}
-                  <span className="fn">clearTimeout</span>(
-                  <span className="var">id</span>){"\n"}
-                  {"}"}, [<span className="var">search</span>])
                 </pre>
               </div>
             </div>

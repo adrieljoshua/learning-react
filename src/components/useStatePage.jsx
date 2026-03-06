@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function UseStatePage() {
   const [count, setCount] = useState(0);
-  const [popping, setPopping] = useState(false);
+  // const [popping, setPopping] = useState(false);
   const [name, setName] = useState("");
   const [todos, setTodos] = useState([
     { id: 1, text: "Learn useState", done: true },
@@ -11,10 +11,10 @@ export default function UseStatePage() {
   ]);
   const [newTodo, setNewTodo] = useState("");
 
-  const bump = (n) => {
+  const changeCount = (n) => {
     setCount((c) => c + n);
-    setPopping(true);
-    setTimeout(() => setPopping(false), 200);
+    // setPopping(true);
+    // setTimeout(() => setPopping(false), 200);
   };
 
   const addTodo = () => {
@@ -47,12 +47,12 @@ export default function UseStatePage() {
           <div className="split">
             <div>
               <div className="demo-area">
-                <div className={`big-num${popping ? " pop" : ""}`}>{count}</div>
+                <div className="big-num">{count}</div>
                 <div className="btn-row">
-                  <button className="btn danger" onClick={() => bump(-1)}>
+                  <button className="btn danger" onClick={() => changeCount(-1)}>
                     − Dec
                   </button>
-                  <button className="btn primary" onClick={() => bump(1)}>
+                  <button className="btn primary" onClick={() => changeCount(1)}>
                     + Inc
                   </button>
                   <button
