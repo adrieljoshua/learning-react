@@ -25,14 +25,12 @@ export default function Home() {
         <div className="header">
           <div className="eyebrow">React Hooks Explorer</div>
           <div className="title">
-            Learn <span>Hooks</span>
+            Learn <span>React Fundamentals</span>
             <br />
-            Interactively
           </div>
           <div className="subtitle">
-            Hands-on playgrounds for <code>useState</code> and{" "}
-            <code>useEffect</code> — React&apos;s most essential hooks. Click,
-            type, and watch effects happen in real time.
+            Hands-on practice for <code>useState</code> and{" "}
+            <code>useEffect</code> — React&apos;s most essential concepts.
           </div>
         </div>
 

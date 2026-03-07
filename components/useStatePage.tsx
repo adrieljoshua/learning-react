@@ -14,8 +14,15 @@ export default function UseStatePage() {
     { id: 2, text: "Learn useEffect", done: false },
     { id: 3, text: "Build something cool", done: false },
   ]);
+
+
   const [newTodo, setNewTodo] = useState("");
 
+
+
+  const array = ["Task 1", "Task 2"];
+
+  
   const changeCount = (n: number) => {
     setCount((c) => c + n);
   };
